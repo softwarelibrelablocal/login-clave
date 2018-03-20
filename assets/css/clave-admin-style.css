@@ -1,0 +1,16 @@
+/**
+Login Cl@ve styles
+ */
+
+div.m4p-clave-container {
+    width: 100%;
+    text-align: center;
+}
+
+div.m4p-clave-container > a {
+    text-decoration: none;
+    width: 100%;
+    background-color: #fe6603;
+    display: block;
+    margin-bottom: 1rem;
+}

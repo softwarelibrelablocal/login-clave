@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<stork-version-info xmlns:ns2="http://www.w3.org/2000/09/xmldsig#">
+    <GenerationDate>2011-11-04Z</GenerationDate>
+    <countries>
+        <country>
+            <ID>LOCAL</ID>
+            <Name>Local</Name>
+            <environments>
+                <prod>
+                    <maxQAA>4</maxQAA>
+                    <SP-url>http://sp.local:9090/SP/</SP-url>
+                    <SP-ocsp-url>http://oscp.local:9090/OcspPeps/SPEPS</SP-ocsp-url>
+                    <Information>Local PEPS</Information>
+                    <attributes>
+                        <attribute>eIdentifier</attribute>
+                        <attribute>givenName</attribute>
+                        <attribute>surname</attribute>
+                        <attribute>inheritedFamilyName</attribute>
+                        <attribute>isdnie</attribute>
+						<attribute>adoptedFamilyName</attribute>
+                        <attribute>gender</attribute>
+                        <attribute>dateOfBirth</attribute>
+                        <attribute>nationalityCode</attribute>
+                        <attribute>countryCodeOfBirth</attribute>
+                        <attribute>maritalStatus</attribute>
+                        <attribute>canonicalResidenceAddress</attribute>
+                        <attribute>textResidenceAddress</attribute>
+                        <attribute>residencePermit</attribute>
+                        <attribute>eMail</attribute>
+                        <attribute>age</attribute>
+                        <attribute>isAgeOver</attribute>
+                        <attribute>signedDoc</attribute>
+                        <attribute>citizenQAALevel</attribute>
+                        <attribute>fiscalNumber</attribute>
+                        <attribute>title</attribute>
+                        <attribute>pseudonym</attribute>
+						<attribute>afirmaResponse</attribute>
+						<attribute>registerType</attribute>
+                    </attributes>
+                    <certificates>
+                        <X509Certificate>LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tTUlJREp6Q0NBZzhDQkV1b25iSXdEUVlKS29aSWh2Y05BUUVGQlFBd1dERUxNQWtHQTFVRUJoTUNSVk14RGpBTUJnTlZCQWdNQlZOd1lXbHVNUTh3RFFZRFZRUUhEQVpOWVdSeWFXUXhEakFNQmdOVkJBb01CVWx1WkhKaE1SZ3dGZ1lEVlFRRERBOXNiMk5oYkMxa1pXMXZMV05sY25Rd0hoY05NVEF3TXpJek1UQTFNek00V2hjTk1UQXdOakF4TVRBMU16TTRXakJZTVFzd0NRWURWUVFHRXdKRlV6RU9NQXdHQTFVRUNBd0ZVM0JoYVc0eER6QU5CZ05WQkFjTUJrMWhaSEpwWkRFT01Bd0dBMVVFQ2d3RlNXNWtjbUV4R0RBV0JnTlZCQU1NRDJ4dlkyRnNMV1JsYlc4dFkyVnlkRENDQVNJd0RRWUpLb1pJaHZjTkFRRUJCUUFEZ2dFUEFEQ0NBUW9DZ2dFQkFKZmRRMS9ta005c3FxYWJyaThxcXFYNHMwSjZVRUVYeUYrMEFqTFU4UkM0V01lWUZTWjV0ZndueUxzb1hZMC85YlpMWG5CeFNpYlFZYWY0U25wWkpobFZBNHNVMGQ4cXlFV0EyT3ZYR0RDbTd1c3BHSEczQ1JRYTdmcEhzbUhtZklBcWhvOVhEbHdwd0pkeDVnSzRFZGM2YUFyY01RZmpxTWh5MXMxbjZPZjFpMWxNR0dzR3JFUklSWTdiaUlRdS84bklUYkhIMThzVUFaTUcxdS9RMEF2aTlPM0xXeXN3SFhVb3VaODE4Zld3RzZ4cnUyTjV5NnZ0Vk8vU0wzZG9SU2RxWWtFbXM5M1RneFR0YUtnOFhOZTI0emhOVHRlNm52V0xhS2VzaTJLelpHQzU3SFU0N0hCRkVzOE5Xazd6OUJEZjh1THlQejlWRGFod1ZLek10bzhDQXdFQUFUQU5CZ2txaGtpRzl3MEJBUVVGQUFPQ0FRRUFncHVSZVhRN0RzZmRvZTV6enkyRjZrbjFxcXRNa1JHc0JQS25ERkNJL0drSVpwQmlxbGZ3ZGg2c2lwbkZLV2ZLRURsUEtOMWtFaGJrRFIyR0ExQ3A0RjRaU0wvSHVtWk1wV2FiUmhEeGhUUHZISUZiYlNoUERKWTkzK2p3L3lRZWFXZ011aHczV3pkSDlUclZvUlpIMFE3c0cxcElKbzUvNklvZ0lad0Z2SkhUL05EdXRLbXVyVTZMdzhWbmRlOFBmblFkK0ZURWh6MFNFR3lLa1dqQXVoR2JKZnNlQnkvejNMK01KcTFyZFNROVBGN3dYRHZXTnpKcXlhTkJVV1dCVjFUc2t2a05aWGNhZ3Vyb1ZQeTJYaEExYWl4bEFhaldFWExrNlV1ajVVWXFhbHJWL3JlTll2RHZZMEJWMkNJbjUxcjdQcG04SUZWVGs4bVlmWDgvanc9PS0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0=</X509Certificate>
+                        <UpcomingCertificate>
+                            <AvailableFrom>2012-05-25+02:00</AvailableFrom>
+                            <X509Certificate>LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tTUlJREp6Q0NBZzhDQkV1b25iSXdEUVlKS29aSWh2Y05BUUVGQlFBd1dERUxNQWtHQTFVRUJoTUNSVk14RGpBTUJnTlZCQWdNQlZOd1lXbHVNUTh3RFFZRFZRUUhEQVpOWVdSeWFXUXhEakFNQmdOVkJBb01CVWx1WkhKaE1SZ3dGZ1lEVlFRRERBOXNiMk5oYkMxa1pXMXZMV05sY25Rd0hoY05NVEF3TXpJek1UQTFNek00V2hjTk1UQXdOakF4TVRBMU16TTRXakJZTVFzd0NRWURWUVFHRXdKRlV6RU9NQXdHQTFVRUNBd0ZVM0JoYVc0eER6QU5CZ05WQkFjTUJrMWhaSEpwWkRFT01Bd0dBMVVFQ2d3RlNXNWtjbUV4R0RBV0JnTlZCQU1NRDJ4dlkyRnNMV1JsYlc4dFkyVnlkRENDQVNJd0RRWUpLb1pJaHZjTkFRRUJCUUFEZ2dFUEFEQ0NBUW9DZ2dFQkFKZmRRMS9ta005c3FxYWJyaThxcXFYNHMwSjZVRUVYeUYrMEFqTFU4UkM0V01lWUZTWjV0ZndueUxzb1hZMC85YlpMWG5CeFNpYlFZYWY0U25wWkpobFZBNHNVMGQ4cXlFV0EyT3ZYR0RDbTd1c3BHSEczQ1JRYTdmcEhzbUhtZklBcWhvOVhEbHdwd0pkeDVnSzRFZGM2YUFyY01RZmpxTWh5MXMxbjZPZjFpMWxNR0dzR3JFUklSWTdiaUlRdS84bklUYkhIMThzVUFaTUcxdS9RMEF2aTlPM0xXeXN3SFhVb3VaODE4Zld3RzZ4cnUyTjV5NnZ0Vk8vU0wzZG9SU2RxWWtFbXM5M1RneFR0YUtnOFhOZTI0emhOVHRlNm52V0xhS2VzaTJLelpHQzU3SFU0N0hCRkVzOE5Xazd6OUJEZjh1THlQejlWRGFod1ZLek10bzhDQXdFQUFUQU5CZ2txaGtpRzl3MEJBUVVGQUFPQ0FRRUFncHVSZVhRN0RzZmRvZTV6enkyRjZrbjFxcXRNa1JHc0JQS25ERkNJL0drSVpwQmlxbGZ3ZGg2c2lwbkZLV2ZLRURsUEtOMWtFaGJrRFIyR0ExQ3A0RjRaU0wvSHVtWk1wV2FiUmhEeGhUUHZISUZiYlNoUERKWTkzK2p3L3lRZWFXZ011aHczV3pkSDlUclZvUlpIMFE3c0cxcElKbzUvNklvZ0lad0Z2SkhUL05EdXRLbXVyVTZMdzhWbmRlOFBmblFkK0ZURWh6MFNFR3lLa1dqQXVoR2JKZnNlQnkvejNMK01KcTFyZFNROVBGN3dYRHZXTnpKcXlhTkJVV1dCVjFUc2t2a05aWGNhZ3Vyb1ZQeTJYaEExYWl4bEFhaldFWExrNlV1ajVVWXFhbHJWL3JlTll2RHZZMEJWMkNJbjUxcjdQcG04SUZWVGs4bVlmWDgvanc9PS0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0=</X509Certificate>
+                        </UpcomingCertificate>
+                    </certificates>
+                </prod>
+                <test>
+                    <maxQAA>4</maxQAA>
+                    <SP-url>http://sp.local:9090/SP/</SP-url>
+                    <SP-ocsp-url>https://ocsp.local:9090/OcspPeps/SPEPS</SP-ocsp-url>
+                    <Information>Local PEPS</Information>
+                    <attributes>
+                        <attribute>eIdentifier</attribute>
+                        <attribute>givenName</attribute>
+                        <attribute>surname</attribute>
+                        <attribute>inheritedFamilyName</attribute>
+						<attribute>isdnie</attribute>
+                        <attribute>adoptedFamilyName</attribute>
+                        <attribute>gender</attribute>
+                        <attribute>dateOfBirth</attribute>
+                        <attribute>nationalityCode</attribute>
+                        <attribute>countryCodeOfBirth</attribute>
+                        <attribute>maritalStatus</attribute>
+                        <attribute>canonicalResidenceAddress</attribute>
+                        <attribute>textResidenceAddress</attribute>
+                        <attribute>residencePermit</attribute>
+                        <attribute>eMail</attribute>
+                        <attribute>age</attribute>
+                        <attribute>isAgeOver</attribute>
+                        <attribute>signedDoc</attribute>
+                        <attribute>citizenQAALevel</attribute>
+                        <attribute>fiscalNumber</attribute>
+                        <attribute>title</attribute>
+                        <attribute>pseudonym</attribute>
+						<attribute>afirmaResponse</attribute>
+						<attribute>registerType</attribute>
+                    </attributes>
+                    <certificates>
+                        <X509Certificate>LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tTUlJREp6Q0NBZzhDQkV1b25iSXdEUVlKS29aSWh2Y05BUUVGQlFBd1dERUxNQWtHQTFVRUJoTUNSVk14RGpBTUJnTlZCQWdNQlZOd1lXbHVNUTh3RFFZRFZRUUhEQVpOWVdSeWFXUXhEakFNQmdOVkJBb01CVWx1WkhKaE1SZ3dGZ1lEVlFRRERBOXNiMk5oYkMxa1pXMXZMV05sY25Rd0hoY05NVEF3TXpJek1UQTFNek00V2hjTk1UQXdOakF4TVRBMU16TTRXakJZTVFzd0NRWURWUVFHRXdKRlV6RU9NQXdHQTFVRUNBd0ZVM0JoYVc0eER6QU5CZ05WQkFjTUJrMWhaSEpwWkRFT01Bd0dBMVVFQ2d3RlNXNWtjbUV4R0RBV0JnTlZCQU1NRDJ4dlkyRnNMV1JsYlc4dFkyVnlkRENDQVNJd0RRWUpLb1pJaHZjTkFRRUJCUUFEZ2dFUEFEQ0NBUW9DZ2dFQkFKZmRRMS9ta005c3FxYWJyaThxcXFYNHMwSjZVRUVYeUYrMEFqTFU4UkM0V01lWUZTWjV0ZndueUxzb1hZMC85YlpMWG5CeFNpYlFZYWY0U25wWkpobFZBNHNVMGQ4cXlFV0EyT3ZYR0RDbTd1c3BHSEczQ1JRYTdmcEhzbUhtZklBcWhvOVhEbHdwd0pkeDVnSzRFZGM2YUFyY01RZmpxTWh5MXMxbjZPZjFpMWxNR0dzR3JFUklSWTdiaUlRdS84bklUYkhIMThzVUFaTUcxdS9RMEF2aTlPM0xXeXN3SFhVb3VaODE4Zld3RzZ4cnUyTjV5NnZ0Vk8vU0wzZG9SU2RxWWtFbXM5M1RneFR0YUtnOFhOZTI0emhOVHRlNm52V0xhS2VzaTJLelpHQzU3SFU0N0hCRkVzOE5Xazd6OUJEZjh1THlQejlWRGFod1ZLek10bzhDQXdFQUFUQU5CZ2txaGtpRzl3MEJBUVVGQUFPQ0FRRUFncHVSZVhRN0RzZmRvZTV6enkyRjZrbjFxcXRNa1JHc0JQS25ERkNJL0drSVpwQmlxbGZ3ZGg2c2lwbkZLV2ZLRURsUEtOMWtFaGJrRFIyR0ExQ3A0RjRaU0wvSHVtWk1wV2FiUmhEeGhUUHZISUZiYlNoUERKWTkzK2p3L3lRZWFXZ011aHczV3pkSDlUclZvUlpIMFE3c0cxcElKbzUvNklvZ0lad0Z2SkhUL05EdXRLbXVyVTZMdzhWbmRlOFBmblFkK0ZURWh6MFNFR3lLa1dqQXVoR2JKZnNlQnkvejNMK01KcTFyZFNROVBGN3dYRHZXTnpKcXlhTkJVV1dCVjFUc2t2a05aWGNhZ3Vyb1ZQeTJYaEExYWl4bEFhaldFWExrNlV1ajVVWXFhbHJWL3JlTll2RHZZMEJWMkNJbjUxcjdQcG04SUZWVGs4bVlmWDgvanc9PS0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0=</X509Certificate>
+                        <UpcomingCertificate>
+                            <AvailableFrom>2012-05-25+02:00</AvailableFrom>
+                            <X509Certificate>LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tTUlJREp6Q0NBZzhDQkV1b25iSXdEUVlKS29aSWh2Y05BUUVGQlFBd1dERUxNQWtHQTFVRUJoTUNSVk14RGpBTUJnTlZCQWdNQlZOd1lXbHVNUTh3RFFZRFZRUUhEQVpOWVdSeWFXUXhEakFNQmdOVkJBb01CVWx1WkhKaE1SZ3dGZ1lEVlFRRERBOXNiMk5oYkMxa1pXMXZMV05sY25Rd0hoY05NVEF3TXpJek1UQTFNek00V2hjTk1UQXdOakF4TVRBMU16TTRXakJZTVFzd0NRWURWUVFHRXdKRlV6RU9NQXdHQTFVRUNBd0ZVM0JoYVc0eER6QU5CZ05WQkFjTUJrMWhaSEpwWkRFT01Bd0dBMVVFQ2d3RlNXNWtjbUV4R0RBV0JnTlZCQU1NRDJ4dlkyRnNMV1JsYlc4dFkyVnlkRENDQVNJd0RRWUpLb1pJaHZjTkFRRUJCUUFEZ2dFUEFEQ0NBUW9DZ2dFQkFKZmRRMS9ta005c3FxYWJyaThxcXFYNHMwSjZVRUVYeUYrMEFqTFU4UkM0V01lWUZTWjV0ZndueUxzb1hZMC85YlpMWG5CeFNpYlFZYWY0U25wWkpobFZBNHNVMGQ4cXlFV0EyT3ZYR0RDbTd1c3BHSEczQ1JRYTdmcEhzbUhtZklBcWhvOVhEbHdwd0pkeDVnSzRFZGM2YUFyY01RZmpxTWh5MXMxbjZPZjFpMWxNR0dzR3JFUklSWTdiaUlRdS84bklUYkhIMThzVUFaTUcxdS9RMEF2aTlPM0xXeXN3SFhVb3VaODE4Zld3RzZ4cnUyTjV5NnZ0Vk8vU0wzZG9SU2RxWWtFbXM5M1RneFR0YUtnOFhOZTI0emhOVHRlNm52V0xhS2VzaTJLelpHQzU3SFU0N0hCRkVzOE5Xazd6OUJEZjh1THlQejlWRGFod1ZLek10bzhDQXdFQUFUQU5CZ2txaGtpRzl3MEJBUVVGQUFPQ0FRRUFncHVSZVhRN0RzZmRvZTV6enkyRjZrbjFxcXRNa1JHc0JQS25ERkNJL0drSVpwQmlxbGZ3ZGg2c2lwbkZLV2ZLRURsUEtOMWtFaGJrRFIyR0ExQ3A0RjRaU0wvSHVtWk1wV2FiUmhEeGhUUHZISUZiYlNoUERKWTkzK2p3L3lRZWFXZ011aHczV3pkSDlUclZvUlpIMFE3c0cxcElKbzUvNklvZ0lad0Z2SkhUL05EdXRLbXVyVTZMdzhWbmRlOFBmblFkK0ZURWh6MFNFR3lLa1dqQXVoR2JKZnNlQnkvejNMK01KcTFyZFNROVBGN3dYRHZXTnpKcXlhTkJVV1dCVjFUc2t2a05aWGNhZ3Vyb1ZQeTJYaEExYWl4bEFhaldFWExrNlV1ajVVWXFhbHJWL3JlTll2RHZZMEJWMkNJbjUxcjdQcG04SUZWVGs4bVlmWDgvanc9PS0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0=</X509Certificate>
+                        </UpcomingCertificate>
+                    </certificates>
+                </test>
+            </environments>
+        </country>
+    </countries>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>SzVn6F2BLEMY/je3KoeEDJaKXlE=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+PEQTzxHretqg6VLKENovMdM6pKDfdMRL8OJ8XTxGfu0nlj7/i4TjyDoAagX3zh9ikE6yfrv4dE7r
+U7R0hBBtg3XXQ1qXQ7eZcfHUN8nc1yxiZSDRMKJc7/gIQoXTBflSDD1hrGG4MRJ8QiUj16f9+4SC
+XT/7LQvxZlnUXvOijPcB/p2PqQ2vml0nXNm0ACaGz0i4iJyNPMhsn0SjrZyrT/0OnAAQMAfq103n
+/f9RpMZZLMbRpOzAJ8naVVIlVYZrbTOcQi1zVZkqcdhuHt5FrOd5yptKGXLujm4m2mjzl+gbp7Vc
++xMPgWEH3I0Hah3dVBwd7NDY51hg27Kd1UHEgw==
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIDJzCCAg8CBEuonbIwDQYJKoZIhvcNAQEFBQAwWDELMAkGA1UEBhMCRVMxDjAMBgNVBAgMBVNw
+YWluMQ8wDQYDVQQHDAZNYWRyaWQxDjAMBgNVBAoMBUluZHJhMRgwFgYDVQQDDA9sb2NhbC1kZW1v
+LWNlcnQwHhcNMTAwMzIzMTA1MzM4WhcNMTAwNjAxMTA1MzM4WjBYMQswCQYDVQQGEwJFUzEOMAwG
+A1UECAwFU3BhaW4xDzANBgNVBAcMBk1hZHJpZDEOMAwGA1UECgwFSW5kcmExGDAWBgNVBAMMD2xv
+Y2FsLWRlbW8tY2VydDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAJfdQ1/mkM9sqqab
+ri8qqqX4s0J6UEEXyF+0AjLU8RC4WMeYFSZ5tfwnyLsoXY0/9bZLXnBxSibQYaf4SnpZJhlVA4sU
+0d8qyEWA2OvXGDCm7uspGHG3CRQa7fpHsmHmfIAqho9XDlwpwJdx5gK4Edc6aArcMQfjqMhy1s1n
+6Of1i1lMGGsGrERIRY7biIQu/8nITbHH18sUAZMG1u/Q0Avi9O3LWyswHXUouZ818fWwG6xru2N5
+y6vtVO/SL3doRSdqYkEms93TgxTtaKg8XNe24zhNTte6nvWLaKesi2KzZGC57HU47HBFEs8NWk7z
+9BDf8uLyPz9VDahwVKzMto8CAwEAATANBgkqhkiG9w0BAQUFAAOCAQEAgpuReXQ7Dsfdoe5zzy2F
+6kn1qqtMkRGsBPKnDFCI/GkIZpBiqlfwdh6sipnFKWfKEDlPKN1kEhbkDR2GA1Cp4F4ZSL/HumZM
+pWabRhDxhTPvHIFbbShPDJY93+jw/yQeaWgMuhw3WzdH9TrVoRZH0Q7sG1pIJo5/6IogIZwFvJHT
+/NDutKmurU6Lw8Vnde8PfnQd+FTEhz0SEGyKkWjAuhGbJfseBy/z3L+MJq1rdSQ9PF7wXDvWNzJq
+yaNBUWWBV1TskvkNZXcaguroVPy2XhA1aixlAajWEXLk6Uuj5UYqalrV/reNYvDvY0BV2CIn51r7
+Ppm8IFVTk8mYfX8/jw==
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>
+l91DX+aQz2yqppuuLyqqpfizQnpQQRfIX7QCMtTxELhYx5gVJnm1/CfIuyhdjT/1tktecHFKJtBh
+p/hKelkmGVUDixTR3yrIRYDY69cYMKbu6ykYcbcJFBrt+keyYeZ8gCqGj1cOXCnAl3HmArgR1zpo
+CtwxB+OoyHLWzWfo5/WLWUwYawasREhFjtuIhC7/ychNscfXyxQBkwbW79DQC+L07ctbKzAddSi5
+nzXx9bAbrGu7Y3nLq+1U79Ivd2hFJ2piQSaz3dODFO1oqDxc17bjOE1O17qe9Ytop6yLYrNkYLns
+dTjscEUSzw1aTvP0EN/y4vI/P1UNqHBUrMy2jw==
+</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></stork-version-info>

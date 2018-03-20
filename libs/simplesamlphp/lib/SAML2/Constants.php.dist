@@ -1,0 +1,479 @@
+<?php
+
+//require_once('/var/simplesamlphp/lib/SAML2/Stork_RequestedAttribute.php');
+require_once('Stork_RequestedAttribute.php');
+
+class StorkConstants {
+
+    const SP_VC_FILE = '/var/simplesamlphp/STORK-info-SPs.xml';
+    const STORKP_NS  = 'urn:eu:stork:names:tc:STORK:1.0:protocol';
+    const SAMLP_NS = 'urn:oasis:names:tc:SAML:2.0:protocol';
+    const STORK_NS = 'urn:eu:stork:names:tc:STORK:1.0:assertion';
+
+    /*TODO: devolver ésto a su forma original*/
+    const ASSERTION_URL = 'https://www.rivasciudad.vm/wp-login.php?external_logged=ok';
+    const SPID = 'demo-sp-php';
+    const LOGOUT_RETURN_URL = 'https://www.rivasciudad.vm/wp-login.php?logout=ok';
+    const LOGOUT_SEND_URL = 'https://se-pasarela.clave.gob.es/Proxy/LogoutAction';
+
+    const QAALEVEL = 'stork:QualityAuthenticationAssuranceLevel';
+    const SPSECTOR = 'stork:spSector';
+    const SPINST = 'stork:spInstitution';
+    const SPAPP = 'stork:spApplication';
+    const SPCOUNTRY = 'stork:spCountry';
+    const EIDSS = 'storkp:eIDSectorShare';
+    const EIDCSS = 'storkp:eIDCrossSectorShare';
+    const EIDCBS = 'storkp:eIDCrossBorderShare';
+
+    /*Tocar aquí para añadir atributos*/
+    public static $idsPersonal = array('DNI', 'Nombre', 'Apellidos', 'inheritedFamilyName', 'DNIe', 'adoptedFamilyName', 'gender', 'dateOfBirth', 'countryCodeOfBirth', 'placeOfBirth', 'nationalityCode', 'maritalStatus', 'eMail', 'pseudonym', 'age', 'isAgeOver', 'canonicalResidenceAddress', 'signedDoc', 'textResidenceAddress', 'title', 'residencePermit', 'citizenQAALevel', 'unknown', 'registerType', 'afirmaResponse');
+
+    public static $idsBusiness = array('surnameOfHolder', 'givenNameOfHolder', 'dateOfBirthOfHolder', 'studentIdentificationCode', 'nameOfQualification', 'nameOfTitle', 'mainFieldsOfStudy', 'nameOfAwardingInstitution', 'statusOfAwardingInstitution', 'languageOfInstruction', 'languageOfAssesment', 'levelOfQualification', 'officialLengthOfProgramme', 'accessRequirement', 'modeOfStudy', 'programmeRequirements', 'programmeDetails', 'gradingScheme', 'gradingDistributionGuidance', 'overallClassification', 'accessToFurtherStudy', 'professionalStatus',
+        'additionalInformation', 'additionalInformationSources', 'certificationDate', 'certificationCapacity', 'higherEducationSystemInformation',
+        'yearOfStudy', 'averageGradeOfStudy', 'studyRecommendation', 'isEligibleForInternship', 'isStudent', 'isAcademicStaff', 'isTeacherOf',
+        'isCourseCoordinator', 'isAdminStaff', 'habilitation', 'acTitle', 'hasDegree', 'hasAccountInBank', 'isHealthCareProfessional');
+
+    public static $idsLegal = array('eLPIdentifier', 'legalName', 'alternativeName', 'type', 'translatableType', 'status', 'activity', 'registeredAddress', 'registeredCanonicalAddress', 'contactInformation', 'fiscalNumber', 'representative', 'represented', 'mandateContent');
+
+
+    private static $confs = array(
+        'stork:spSector' => 'DEMO-SP',
+        'stork:spInstitution' => 'DEMO-SP',
+        'stork:spApplication' => 'DEMO-SP',
+        'storkp:eIDSectorShare' => 'true',
+        'storkp:eIDCrossSectorShare' => 'true',
+        'storkp:eIDCrossBorderShare' => 'true',
+    );
+
+    public static $attrs = array(
+        'DNI.name' => 'eIdentifier',
+        'DNI.uri' => 'http://www.stork.gov.eu/1.0/eIdentifier',
+        'DNI.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'DNI.value' => NULL,
+        'Nombre.name' => 'givenName',
+        'Nombre.uri' => 'http://www.stork.gov.eu/1.0/givenName',
+        'Nombre.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'Nombre.value' => NULL,
+        'Apellidos.name' => 'surname',
+        'Apellidos.uri' => 'http://www.stork.gov.eu/1.0/surname',
+        'Apellidos.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'Apellidos.value' => NULL,
+        'inheritedFamilyName.name' => 'inheritedFamilyName',
+        'inheritedFamilyName.uri' => 'http://www.stork.gov.eu/1.0/inheritedFamilyName',
+        'inheritedFamilyName.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'inheritedFamilyName.value' => NULL,
+        'adoptedFamilyName.name' => 'adoptedFamilyName',
+        'adoptedFamilyName.uri' => 'http://www.stork.gov.eu/1.0/adoptedFamilyName',
+        'adoptedFamilyName.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'adoptedFamilyName.value' => NULL,
+        'DNIe.name' => 'isdnie',
+        'DNIe.uri' => 'http://www.stork.gov.eu/1.0/isdnie',
+        'DNIe.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'DNIe.value' => NULL,
+        'gender.name' => 'gender',
+        'gender.uri' => 'http://www.stork.gov.eu/1.0/gender',
+        'gender.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'gender.value' => NULL,
+        'dateOfBirth.name' => 'dateOfBirth',
+        'dateOfBirth.uri' => 'http://www.stork.gov.eu/1.0/dateOfBirth',
+        'dateOfBirth.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'dateOfBirth.value' => NULL,
+        'countryCodeOfBirth.name' => 'countryCodeOfBirth',
+        'countryCodeOfBirth.uri' => 'http://www.stork.gov.eu/1.0/countryCodeOfBirth',
+        'countryCodeOfBirth.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'countryCodeOfBirth.value' => NULL,
+        'placeOfBirth.name' => 'placeOfBirth',
+        'placeOfBirth.uri' => 'http://www.stork.gov.eu/1.0/countryCodeOfBirth',
+        'placeOfBirth.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'placeOfBirth.value' => NULL,
+        'nationalityCode.name' => 'nationalityCode',
+        'nationalityCode.uri' => 'http://www.stork.gov.eu/1.0/nationalityCode',
+        'nationalityCode.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'nationalityCode.value' => NULL,
+        'maritalStatus.name' => 'maritalStatus',
+        'maritalStatus.uri' => 'http://www.stork.gov.eu/1.0/maritalStatus',
+        'maritalStatus.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'maritalStatus.value' => NULL,
+        'textResidenceAddress.name' => 'textResidenceAddress',
+        'textResidenceAddress.uri' => 'http://www.stork.gov.eu/1.0/textResidenceAddress',
+        'textResidenceAddress.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'textResidenceAddress.value' => NULL,
+        'canonicalResidenceAddress.name' => 'canonicalResidenceAddress',
+        'canonicalResidenceAddress.uri' => 'http://www.stork.gov.eu/1.0/canonicalResidenceAddress',
+        'canonicalResidenceAddress.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'canonicalResidenceAddress.value' => NULL,
+        'eMail.name' => 'eMail',
+        'eMail.uri' => 'http://www.stork.gov.eu/1.0/eMail',
+        'eMail.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'eMail.value' => NULL,
+        'title.name' => 'title',
+        'title.uri' => 'http://www.stork.gov.eu/1.0/title',
+        'title.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'title.value' => NULL,
+        'residencePermit.name' => 'residencePermit',
+        'residencePermit.uri' => 'http://www.stork.gov.eu/1.0/residencePermit',
+        'residencePermit.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'residencePermit.value' => NULL,
+        'pseudonym.name' => 'pseudonym',
+        'pseudonym.uri' => 'http://www.stork.gov.eu/1.0/pseudonym',
+        'pseudonym.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'pseudonym.value' => NULL,
+        'age.name' => 'age',
+        'age.uri' => 'http://www.stork.gov.eu/1.0/age',
+        'age.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'age.value' => NULL,
+        'isAgeOver.name' => 'isAgeOver',
+        'isAgeOver.uri' => 'http://www.stork.gov.eu/1.0/isAgeOver',
+        'isAgeOver.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'isAgeOver.value' => '18',
+        'signedDoc.name' => 'signedDoc',
+        'signedDoc.uri' => 'http://www.stork.gov.eu/1.0/signedDoc',
+        'signedDoc.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'signedDoc.value' => '<sl:CreateXMLSignatureRequest xmlns:sl="http://www.buergerkarte.at/namespaces/securitylayer/1.2#"><sl:KeyboxIdentifier>SecureSignatureKeypair</sl:KeyboxIdentifier><sl:DataObjectInfo Structure="enveloping"><sl:DataObject><sl:XMLContent>Ich bin ein einfacher Text.</sl:XMLContent></sl:DataObject><sl:TransformsInfo><sl:FinalDataMetaInfo><sl:MimeType>text/plain</sl:MimeType></sl:FinalDataMetaInfo></sl:TransformsInfo></sl:DataObjectInfo></sl:CreateXMLSignatureRequest>',
+        'citizenQAALevel.name' => 'citizenQAALevel',
+        'citizenQAALevel.uri' => 'http://www.stork.gov.eu/1.0/citizenQAALevel',
+        'citizenQAALevel.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'citizenQAALevel.value' => NULL,
+        'unknown.name' => 'unknown',
+        'unknown.uri' => 'http://www.stork.gov.eu/1.0/unknown',
+        'unknown.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'unknown.value' => NULL,
+        'afirmaResponse.name' => 'afirmaResponse',
+        'afirmaResponse.uri' => 'http://www.stork.gov.eu/1.0/afirmaResponse',
+        'afirmaResponse.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'afirmaResponse.value' => NULL,
+        'registerType.name' => 'registerType',
+        'registerType.uri' => 'http://www.stork.gov.eu/1.0/registerType',
+        'registerType.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'registerType.value' => NULL,
+
+
+        'surnameOfHolder.name' => 'surnameOfHolder',
+        'surnameOfHolder.uri' => 'http://www.stork.gov.eu/1.0/surnameOfHolder',
+        'surnameOfHolder.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'surnameOfHolder.value' => NULL,
+        'givenNameOfHolder.name' => 'givenNameOfHolder',
+        'givenNameOfHolder.uri' => 'http://www.stork.gov.eu/1.0/givenNameOfHolder',
+        'givenNameOfHolder.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'givenNameOfHolder.value' => NULL,
+        'dateOfBirthOfHolder.name' => 'dateOfBirthOfHolder',
+        'dateOfBirthOfHolder.uri' => 'http://www.stork.gov.eu/1.0/dateOfBirthOfHolder',
+        'dateOfBirthOfHolder.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'dateOfBirthOfHolder.value' => NULL,
+        'studentIdentificationCode.name' => 'studentIdentificationCode',
+        'studentIdentificationCode.uri' => 'http://www.stork.gov.eu/1.0/studentIdentificationCode',
+        'studentIdentificationCode.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'studentIdentificationCode.value' => NULL,
+        'nameOfQualification.name' => 'nameOfQualification',
+        'nameOfQualification.uri' => 'http://www.stork.gov.eu/1.0/nameOfQualification',
+        'nameOfQualification.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'nameOfQualification.value' => NULL,
+        'nameOfTitle.name' => 'nameOfTitle',
+        'nameOfTitle.uri' => 'http://www.stork.gov.eu/1.0/nameOfTitle',
+        'nameOfTitle.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'nameOfTitle.value' => NULL,
+        'mainFieldsOfStudy.name' => 'mainFieldsOfStudy',
+        'mainFieldsOfStudy.uri' => 'http://www.stork.gov.eu/1.0/mainFieldsOfStudy',
+        'mainFieldsOfStudy.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'mainFieldsOfStudy.value' => NULL,
+        'nameOfAwardingInstitution.name' => 'nameOfAwardingInstitution',
+        'nameOfAwardingInstitution.uri' => 'http://www.stork.gov.eu/1.0/nameOfAwardingInstitution',
+        'nameOfAwardingInstitution.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'nameOfAwardingInstitution.value' => NULL,
+        'statusOfAwardingInstitution.name' => 'statusOfAwardingInstitution',
+        'statusOfAwardingInstitution.uri' => 'http://www.stork.gov.eu/1.0/statusOfAwardingInstitution',
+        'statusOfAwardingInstitution.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'statusOfAwardingInstitution.value' => NULL,
+        'languageOfInstruction.name' => 'languageOfInstruction',
+        'languageOfInstruction.uri' => 'http://www.stork.gov.eu/1.0/languageOfInstruction',
+        'languageOfInstruction.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'languageOfInstruction.value' => NULL,
+        'languageOfAssesment.name' => 'languageOfAssesment',
+        'languageOfAssesment.uri' => 'http://www.stork.gov.eu/1.0/languageOfAssesment',
+        'languageOfAssesment.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'languageOfAssesment.value' => NULL,
+        'levelOfQualification.name' => 'levelOfQualification',
+        'levelOfQualification.uri' => 'http://www.stork.gov.eu/1.0/levelOfQualification',
+        'levelOfQualification.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'levelOfQualification.value' => NULL,
+        'officialLengthOfProgramme.name' => 'officialLengthOfProgramme',
+        'officialLengthOfProgramme.uri' => 'http://www.stork.gov.eu/1.0/officialLengthOfProgramme',
+        'officialLengthOfProgramme.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'officialLengthOfProgramme.value' => NULL,
+        'accessRequirement.name' => 'accessRequirement',
+        'accessRequirement.uri' => 'http://www.stork.gov.eu/1.0/accessRequirement',
+        'accessRequirement.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'accessRequirement.value' => NULL,
+        'modeOfStudy.name' => 'modeOfStudy',
+        'modeOfStudy.uri' => 'http://www.stork.gov.eu/1.0/modeOfStudy',
+        'modeOfStudy.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'modeOfStudy.value' => NULL,
+        'programmeRequirements.name' => 'programmeRequirements',
+        'programmeRequirements.uri' => 'http://www.stork.gov.eu/1.0/programmeRequirements',
+        'programmeRequirements.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'programmeRequirements.value' => NULL,
+        'programmeDetails.name' => 'programmeDetails',
+        'programmeDetails.uri' => 'http://www.stork.gov.eu/1.0/programmeDetails',
+        'programmeDetails.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'programmeDetails.value' => NULL,
+        'gradingScheme.name' => 'gradingScheme',
+        'gradingScheme.uri' => 'http://www.stork.gov.eu/1.0/gradingScheme',
+        'gradingScheme.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'gradingScheme.value' => NULL,
+        'gradingDistributionGuidance.name' => 'gradingDistributionGuidance',
+        'gradingDistributionGuidance.uri' => 'http://www.stork.gov.eu/1.0/gradingDistributionGuidance',
+        'gradingDistributionGuidance.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'gradingDistributionGuidance.value' => NULL,
+        'overallClassification.name' => 'overallClassification',
+        'overallClassification.uri' => 'http://www.stork.gov.eu/1.0/overallClassification',
+        'overallClassification.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'overallClassification.value' => NULL,
+        'accessToFurtherStudy.name' => 'accessToFurtherStudy',
+        'accessToFurtherStudy.uri' => 'http://www.stork.gov.eu/1.0/accessToFurtherStudy',
+        'accessToFurtherStudy.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'accessToFurtherStudy.value' => NULL,
+        'professionalStatus.name' => 'professionalStatus',
+        'professionalStatus.uri' => 'http://www.stork.gov.eu/1.0/professionalStatus',
+        'professionalStatus.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'professionalStatus.value' => NULL,
+        'additionalInformation.name' => 'additionalInformation',
+        'additionalInformation.uri' => 'http://www.stork.gov.eu/1.0/additionalInformation',
+        'additionalInformation.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'additionalInformation.value' => NULL,
+        'additionalInformationSources.name' => 'additionalInformationSources',
+        'additionalInformationSources.uri' => 'http://www.stork.gov.eu/1.0/additionalInformationSources',
+        'additionalInformationSources.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'additionalInformationSources.value' => NULL,
+        'certificationDate.name' => 'certificationDate',
+        'certificationDate.uri' => 'http://www.stork.gov.eu/1.0/certificationDate',
+        'certificationDate.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'certificationDate.value' => NULL,
+        'certificationCapacity.name' => 'certificationCapacity',
+        'certificationCapacity.uri' => 'http://www.stork.gov.eu/1.0/certificationCapacity',
+        'certificationCapacity.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'certificationCapacity.value' => NULL,
+        'higherEducationSystemInformation.name' => 'higherEducationSystemInformation',
+        'higherEducationSystemInformation.uri' => 'http://www.stork.gov.eu/1.0/higherEducationSystemInformation',
+        'higherEducationSystemInformation.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'higherEducationSystemInformation.value' => NULL,
+        'yearOfStudy.name' => 'yearOfStudy',
+        'yearOfStudy.uri' => 'http://www.stork.gov.eu/1.0/yearOfStudy',
+        'yearOfStudy.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'yearOfStudy.value' => NULL,
+        'averageGradeOfStudy.name' => 'averageGradeOfStudy',
+        'averageGradeOfStudy.uri' => 'http://www.stork.gov.eu/1.0/averageGradeOfStudy',
+        'averageGradeOfStudy.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'averageGradeOfStudy.value' => NULL,
+        'studyRecommendation.name' => 'studyRecommendation',
+        'studyRecommendation.uri' => 'http://www.stork.gov.eu/1.0/studyRecommendation',
+        'studyRecommendation.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'studyRecommendation.value' => NULL,
+        'isEligibleForInternship.name' => 'isEligibleForInternship',
+        'isEligibleForInternship.uri' => 'http://www.stork.gov.eu/1.0/isEligibleForInternship',
+        'isEligibleForInternship.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'isEligibleForInternship.value' => NULL,
+        'isStudent.name' => 'isStudent',
+        'isStudent.uri' => 'http://www.stork.gov.eu/1.0/isStudent',
+        'isStudent.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'isStudent.value' => NULL,
+        'isAcademicStaff.name' => 'isAcademicStaff',
+        'isAcademicStaff.uri' => 'http://www.stork.gov.eu/1.0/isAcademicStaff',
+        'isAcademicStaff.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'isAcademicStaff.value' => NULL,
+        'isTeacherOf.name' => 'isTeacherOf',
+        'isTeacherOf.uri' => 'http://www.stork.gov.eu/1.0/isTeacherOf',
+        'isTeacherOf.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'isTeacherOf.value' => NULL,
+        'isCourseCoordinator.name' => 'isCourseCoordinator',
+        'isCourseCoordinator.uri' => 'http://www.stork.gov.eu/1.0/isCourseCoordinator',
+        'isCourseCoordinator.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'isCourseCoordinator.value' => NULL,
+        'isAdminStaff.name' => 'isAdminStaff',
+        'isAdminStaff.uri' => 'http://www.stork.gov.eu/1.0/isAdminStaff',
+        'isAdminStaff.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'isAdminStaff.value' => NULL,
+        'habilitation.name' => 'habilitation',
+        'habilitation.uri' => 'http://www.stork.gov.eu/1.0/habilitation',
+        'habilitation.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'habilitation.value' => NULL,
+        'acTitle.name' => 'acTitle',
+        'acTitle.uri' => 'http://www.stork.gov.eu/1.0/acTitle',
+        'acTitle.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'acTitle.value' => NULL,
+        'hasDegree.name' => 'hasDegree',
+        'hasDegree.uri' => 'http://www.stork.gov.eu/1.0/hasDegree',
+        'hasDegree.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'hasDegree.value' => NULL,
+        'hasAccountInBank.name' => 'hasAccountInBank',
+        'hasAccountInBank.uri' => 'http://www.stork.gov.eu/1.0/hasAccountInBank',
+        'hasAccountInBank.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'hasAccountInBank.value' => NULL,
+        'isHealthCareProfessional.name' => 'isHealthCareProfessional',
+        'isHealthCareProfessional.uri' => 'http://www.stork.gov.eu/1.0/isHealthCareProfessional',
+        'isHealthCareProfessional.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'isHealthCareProfessional.value' => NULL,
+
+        'eLPIdentifier.name' => 'eLPIdentifier',
+        'eLPIdentifier.uri' => 'http://www.stork.gov.eu/1.0/eLPIdentifier',
+        'eLPIdentifier.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'eLPIdentifier.value' => NULL,
+        'legalName.name' => 'legalName',
+        'legalName.uri' => 'http://www.stork.gov.eu/1.0/legalName',
+        'legalName.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'legalName.value' => NULL,
+        'alternativeName.name' => 'alternativeName',
+        'alternativeName.uri' => 'http://www.stork.gov.eu/1.0/alternativeName',
+        'alternativeName.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'alternativeName.value' => NULL,
+        'type.name' => 'type',
+        'type.uri' => 'http://www.stork.gov.eu/1.0/type',
+        'type.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'type.value' => NULL,
+        'translatableType.name' => 'translatableType',
+        'translatableType.uri' => 'http://www.stork.gov.eu/1.0/translatableType',
+        'translatableType.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'translatableType.value' => NULL,
+        'status.name' => 'status',
+        'status.uri' => 'http://www.stork.gov.eu/1.0/status',
+        'status.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'status.value' => NULL,
+        'activity.name' => 'activity',
+        'activity.uri' => 'http://www.stork.gov.eu/1.0/activity',
+        'activity.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'activity.value' => NULL,
+        'registeredAddress.name' => 'registeredAddress',
+        'registeredAddress.uri' => 'http://www.stork.gov.eu/1.0/registeredAddress',
+        'registeredAddress.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'registeredAddress.value' => NULL,
+        'registeredCanonicalAddress.name' => 'registeredCanonicalAddress',
+        'registeredCanonicalAddress.uri' => 'http://www.stork.gov.eu/1.0/registeredCanonicalAddress',
+        'registeredCanonicalAddress.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'registeredCanonicalAddress.value' => NULL,
+        'contactInformation.name' => 'contactInformation',
+        'contactInformation.uri' => 'http://www.stork.gov.eu/1.0/contactInformation',
+        'contactInformation.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'contactInformation.value' => NULL,
+        'fiscalNumber.name' => 'fiscalNumber',
+        'fiscalNumber.uri' => 'http://www.stork.gov.eu/1.0/fiscalNumber',
+        'fiscalNumber.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'fiscalNumber.value' => NULL,
+        'representative.name' => 'representative',
+        'representative.uri' => 'http://www.stork.gov.eu/1.0/representative',
+        'representative.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'representative.value' => NULL,
+        'represented.name' => 'represented',
+        'represented.uri' => 'http://www.stork.gov.eu/1.0/represented',
+        'represented.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'represented.value' => NULL,
+        'mandateContent.name' => 'mandateContent',
+        'mandateContent.uri' => 'http://www.stork.gov.eu/1.0/mandateContent',
+        'mandateContent.nameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+        'mandateContent.value' => NULL,
+    );
+
+    public static $countries = array('ES');
+
+    public static function genAttrs($request) {
+        $extensions = array();
+
+        //extensions
+        $extensions['stork:QualityAuthenticationAssuranceLevel'] = array_key_exists('qaaLevel', $request) ? $request['qaaLevel'] : 3;
+
+        $extensions['stork:spCountry'] = $request['spcountry'];
+
+        foreach(self::$confs as $key => $value) {
+            $extensions[$key] = $value;
+        }
+
+        //vidp
+        $extensions['VIDP'] = array(
+            'country' => $request['country'],
+            'spid' => StorkConstants::SPID,
+        );
+
+        //requested attributes
+        $attributes = array();
+
+        foreach(self::$idsPersonal as $key) {
+
+            $found = 0;
+            if( $request[$key.'Type'] === 'true' ) {
+                $found = 1;
+                $attrStatus = 'true';
+            } else if ( $request[$key.'Type'] === 'false'  ) {
+                $found = 1;
+                $attrStatus = 'false';
+            }
+            if ($found) {
+                if (array_key_exists($key.'Value', $request)){
+                    $attrValue = $request[$key.'Value'];
+                } else {
+                    $attrValue = self::$attrs[$key.'.value'];
+                }
+                $ra = new RequestedAttribute('stork', 'RequestedAttribute', self::$attrs[$key.'.name'], self::$attrs[$key.'.nameFormat'], $attrStatus, $attrValue);
+                array_push($attributes, $ra);
+            }
+        }
+
+        if (!empty($attributes)) {
+            $extensions['RequestedAttributes'] =  $attributes;
+        }
+
+        return $extensions;
+    }
+
+    //Igual que genAttrs, pero para el botón de "Lanzar petición"
+    public static function genDefaultAttrs($request) {
+        $extensions = array();
+
+        //extensions
+        $extensions['stork:QualityAuthenticationAssuranceLevel'] = array_key_exists('qaaLevel', $request) ? $request['qaaLevel'] : 2;
+
+        $extensions['stork:spCountry'] = $request['spcountry'];
+
+        foreach(self::$confs as $key => $value) {
+            $extensions[$key] = $value;
+        }
+
+        //vidp
+        $extensions['VIDP'] = array(
+            'country' => $request['country'],
+            'spid' => StorkConstants::SPID,
+        );
+
+        //requested attributes
+        $attributes = array();
+
+        $request['DNIType'] = 'true';
+        $request['NombreType'] = 'true';
+        $request['ApellidosType'] = 'true';
+
+        foreach(self::$idsPersonal as $key) {
+
+            $found = 0;
+            if( $request[$key.'Type'] === 'true' ) {
+                $found = 1;
+                $attrStatus = 'true';
+            } else if ( $request[$key.'Type'] === 'false'  ) {
+                $found = 1;
+                $attrStatus = 'false';
+            }
+            if ($found) {
+                if (array_key_exists($key.'Value', $request)){
+                    $attrValue = $request[$key.'Value'];
+                } else {
+                    $attrValue = self::$attrs[$key.'.value'];
+                }
+                $ra = new RequestedAttribute('stork', 'RequestedAttribute', self::$attrs[$key.'.name'], self::$attrs[$key.'.nameFormat'], $attrStatus, $attrValue);
+                array_push($attributes, $ra);
+            }
+        }
+
+        if (!empty($attributes)) {
+            $extensions['RequestedAttributes'] =  $attributes;
+        }
+
+        return $extensions;
+    }
+
+}
